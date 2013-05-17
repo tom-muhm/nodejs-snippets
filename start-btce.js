@@ -20,7 +20,6 @@ var log = new (winston.Logger)({
 	new (winston.transports.Console)({'timestamp':true})
 	]
 });
-log.log('debug', "127.0.0.1 - there's no place like home");
 
 function getBTCEPairs() {
 	var pairs = new Array();
@@ -31,6 +30,7 @@ function getBTCEPairs() {
 }
 
 var pairs = getBTCEPairs();
+
 function updateBTCEData() {
 	for (var i in pairs) {
 		var pair = pairs[i];
@@ -48,69 +48,6 @@ function updateBTCEData() {
 		btce.ticker(pair, tickerCallback);
 	}
 };
-
-
-
-// var btcePublic = new BTCE();
-
-var data = new Array(20);
-
-var requestApi = function(data, errorFunc){
-	var start = Date.now();
-	if (true) {
-
-		request("https://btc-e.com/api/2/ltc_btc/depth", function (error, response, body) {
-			console.log(Date.now() - start + "ms");
-			var json = JSON.parse(body);
-			log.info(json.asks[0] + json.bids[0]);
-			errorFunc(error);
-		});
-
-	} else {
-
-		var options = {
-			host: 'btc-e.com',
-			port: 443,
-			path: '/api/2/ltc_btc/depth',
-			method: 'POST',
-			agent: false,
-			headers: {
-				'connection': 'keep-alive',
-			}
-		};
-
-		var req = https.request(options, function(res) {
-
-			res.setEncoding('utf8');
-			var buffer = '';
-			res.on('data', function (data) { 
-				buffer += data; });
-			res.on('end', function() { 
-				console.log(Date.now() - start + "ms");
-				var json = JSON.parse(buffer);
-				log.info(json.asks[0] + json.bids[0]);
-			});
-		});
-
-		req.on('error', function(e) {
-			console.log('warning: problem with request: ' + e.message);
-		});
-
-		req.write("");
-		req.end();
-	}
-
-
-};
-
-
-function restart(testFunction, timesLeft) {
-	log.debug("restart " + testFunction.name + " timesLeft " + timesLeft)
-	timesLeft--
-	if (timesLeft > 0) {
-		testFunction(timesLeft)
-	}
-}
 
 function startRequestTest(requests) {
 	if (requests <= 0) {
@@ -168,7 +105,7 @@ if (testHttp) {
 	startHttpTest(requests);
 }
 
-// async.forEachLimit(data, 500, requestApi, function(err){
+// async.forEachLimit(data, parRequests, requestApi, function(err){
 //     // err contains the first error or null
 //     console.log("starting");
 //     if (err) throw err;
