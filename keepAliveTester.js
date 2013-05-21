@@ -20,7 +20,7 @@ var requestTest = require("./requestTest").start;
 var url = "http://api.twitter.com/1.1/statuses/mentions_timeline.json";
 //var url = "https://btc-e.com/api/2/ltc_btc/depth";
 var numOfRequests = 1000
-var numOfParRequests = 50
+var numOfParRequests = 30
 
 /* tests to run */
 // name - function - run_?

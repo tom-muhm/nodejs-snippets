@@ -61,7 +61,7 @@ function startHttpTest(x, callback) {
 //            res.destroy();
         });
     });
-    req.setTimeout(20, function() {
+    req.setTimeout(2000, function() {
         callback();
     });
     req.on("error", function (err) {
