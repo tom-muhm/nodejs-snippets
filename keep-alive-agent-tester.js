@@ -2,7 +2,7 @@
 var winston = require("winston");
 var urlParser = require("url");
 var HttpAgent = require("agentkeepalive"); // more active than forever-agent? - https://github.com/TBEDP/agentkeepalive
-var HttpsAgent = HttpAgent.HttpsAgent; // more active than forever-agent? - https://github.com/TBEDP/agentkeepalive
+var HttpsAgent = HttpAgent.HttpsAgent;
 var foreverAgent = require('forever-agent'); // module by request creator - https://github.com/mikeal/forever-agent
 
 var log = winston;
@@ -13,8 +13,8 @@ var log = winston;
  });*/
 
 /* import tests */
-var httpTest = require("./httpTest").start;
-var requestTest = require("./requestTest").start;
+var httpTest = require("./keep-alive-agent-http-test").start;
+var requestTest = require("./keep-alive-agent-request-test").start;
 
 /* global test configuration */
 var url = "http://api.twitter.com/1.1/statuses/mentions_timeline.json";

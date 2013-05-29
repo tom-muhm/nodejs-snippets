@@ -40,6 +40,7 @@ function startTest(numOfRequests, numOfParRequests, options, callback) {
 
 function startHttpTest(x, callback) {
     var start = Date.now();
+    http.get(httpOptions)
     var req = protocol.get(httpOptions);
     req.on("response", function (res) {
         var body = "";
