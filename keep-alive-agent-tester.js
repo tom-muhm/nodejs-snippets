@@ -1,3 +1,6 @@
+//process.env.NODE_DEBUG = 'net';
+//process.env.NODE_DEBUG = 'https';
+
 /* imports */
 var winston = require("winston");
 var urlParser = require("url");
@@ -36,7 +39,7 @@ var results = new Array();
 
 function testStopped(name, time, parseErrors, otherErrors) {
     testRunning = false;
-    var result = name + " finished for " + numOfRequests + " requests in " + time/1000 + "sec, parse errors: " + parseErrors + ", other errors: " + otherErrors + ", parallel requests " + numOfParRequests;
+    var result = name + " finished for " + numOfRequests + " requests in " + time / 1000 + "sec, parse errors: " + parseErrors + ", other errors: " + otherErrors + ", parallel requests " + numOfParRequests;
     log.info(result);
     results.push(result);
 }

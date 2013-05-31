@@ -1,3 +1,6 @@
+process.env.NODE_DEBUG = 'http';
+process.env.NODE_DEBUG = 'https';
+
 var url = require("url");
 var http = require("http");
 var https = require("https");
@@ -40,7 +43,6 @@ function startTest(numOfRequests, numOfParRequests, options, callback) {
 
 function startHttpTest(x, callback) {
     var start = Date.now();
-    http.get(httpOptions)
     var req = protocol.get(httpOptions);
     req.on("response", function (res) {
         var body = "";
