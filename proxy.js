@@ -66,10 +66,10 @@ var startProxy = function (proxyPort) {
 var runTests = function () {
 
     var request = require('request').defaults({
-        proxy: 'http://localhost:8080',
-        headers: {
-            connection: 'keep-alive'
-        }
+        proxy: 'http://localhost:8080'
+//        headers: {
+//            connection: 'keep-alive'
+//        }
     });
 
     // HTTP TEST
@@ -142,8 +142,6 @@ var runTests = function () {
 
 startProxy()
 runTests()
-
-console.log(HttpAgent)
 
 module.exports.start = startProxy
 module.exports.runTests = runTests
